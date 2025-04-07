@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Snipte IT Kurulumu (Ubuntu)</title>
+  <link rel="stylesheet" href="styles_duzenlenmis.css" />
+  <link rel="stylesheet" href="header-style.css" />
+</head>
+<body>
+
+  <div id="header"></div>
+
+  <div class="page-layout">
+    <aside class="sidebar">
+      <img class="avatar" src="images/zaferozmaden_avatar.jpeg" alt="Zafer Özmaden">
+      <div class="recent-posts">
+        <h3>⚡ Son Makaleler</h3>
+        <ul id="recent-posts-list"></ul>
+      </div>
+    </aside>
+
+    <main class="content">
+      <h1>Snipte IT Kurulumu: Ubuntu Sunucuda Adım Adım</h1>
+      <p><strong>Yazar:</strong> Zafer Özmaden </p>
+
+      <h2>📌 Snipte IT Nedir?</h2>
+      <p>Snipte IT, açık kaynak kodlu bir BT varlık yönetimi (IT Asset Management) yazılımıdır. Kurumların donanım, yazılım, lisans ve kullanıcı envanterlerini merkezi olarak takip etmelerini sağlar.</p>
+
+      <h2>🔧 Gereksinimler</h2>
+      <ul>
+        <li>Ubuntu 20.04 veya 22.04 LTS</li>
+        <li>Apache veya Nginx</li>
+        <li>PHP 8.x</li>
+        <li>MariaDB veya MySQL</li>
+        <li>Composer</li>
+        <li>Git</li>
+      </ul>
+
+      <h2>🧱 Adım 1: Gerekli Paketlerin Kurulumu</h2>
+      <pre><code>sudo apt update
+sudo apt install apache2 php php-cli php-common php-curl php-mbstring php-xml php-mysql php-zip php-bcmath unzip curl git mariadb-server composer -y</code></pre>
+
+      <h2>📁 Adım 2: Snipte IT’yi İndirme ve Dizin Oluşturma</h2>
+      <pre><code>cd /var/www/
+sudo git clone https://github.com/snipe/snipe-it snipeit
+cd snipeit
+sudo cp .env.example .env</code></pre>
+
+      <h2>⚙️ Adım 3: Veritabanı Oluşturma</h2>
+      <pre><code>sudo mysql -u root -p
+
+CREATE DATABASE snipeit;
+GRANT ALL ON snipeit.* TO 'snipeuser'@'localhost' IDENTIFIED BY 'GüçlüBirSifre!';
+FLUSH PRIVILEGES;
+EXIT;</code></pre>
+
+      <h2>✏️ Adım 4: .env Dosyasını Düzenleme</h2>
+      <p><code>.env</code> dosyasını açın ve şu alanları doldurun:</p>
+      <pre><code>APP_URL=http://sunucu_ip
+DB_DATABASE=snipeit
+DB_USERNAME=snipeuser
+DB_PASSWORD=GüçlüBirSifre!</code></pre>
+
+      <h2>📦 Adım 5: Composer ile Kurulum</h2>
+      <pre><code>sudo composer install --no-dev --prefer-source
+php artisan key:generate
+php artisan migrate --seed
+php artisan config:clear</code></pre>
+
+      <h2>🌍 Adım 6: Apache Ayarları</h2>
+      <pre><code>sudo chown -R www-data:www-data /var/www/snipeit
+sudo nano /etc/apache2/sites-available/snipeit.conf</code></pre>
+
+      <pre><code>&lt;VirtualHost *:80&gt;
+    ServerName snipeit.local
+    DocumentRoot /var/www/snipeit/public
+
+    &lt;Directory /var/www/snipeit/public&gt;
+        AllowOverride All
+        Require all granted
+    &lt;/Directory&gt;
+&lt;/VirtualHost&gt;</code></pre>
+
+      <pre><code>sudo a2ensite snipeit.conf
+sudo a2enmod rewrite
+sudo systemctl restart apache2</code></pre>
+
+      <h2>✅ Sonuç</h2>
+      <p>Snipte IT artık tarayıcıdan <code>http://sunucu_ip</code> adresi ile erişilebilir. Kurulum sihirbazı arayüzüyle ilk ayarları tamamlayabilirsiniz.</p>
+      <p>BT altyapınızı dijital olarak takip etmek, envanteri düzenli tutmak ve raporlamak için Snipte IT güçlü ve güvenilir bir çözümdür.</p>
+    </main>
+  </div>
+
+  <div id="footer"></div>
+
+  <script>
+    fetch("header.html")
+      .then(r => r.text())
+      .then(d => {
+        document.getElementById("header").innerHTML = d;
+        fetch("posts.json")
+          .then(p => p.json())
+          .then(posts => {
+            const list = document.getElementById("recent-posts-list");
+            if (list) {
+              posts.slice(0, 7).forEach(post => {
+                const li = document.createElement("li");
+                li.innerHTML = `<a href="${post.url}">${post.date} - ${post.title}</a>`;
+                list.appendChild(li);
+              });
+            }
+          });
+      });
+
+    fetch("footer.html")
+      .then(r => r.text())
+      .then(d => {
+        document.getElementById("footer").innerHTML = d;
+      });
+  </script>
+
+</body>
+</html>

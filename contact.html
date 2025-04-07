@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>İletişim - Zafer Özmaden</title>
+  <link rel="stylesheet" href="styles_duzenlenmis.css" />
+  <link rel="stylesheet" href="header-style.css" />
+  <style>
+    body {
+      background-color: #0f172a;
+      color: #f1f5f9;
+    }
+    .dark-form {
+      background-color: #1e293b;
+      color: #f1f5f9;
+    }
+    .dark-form input, .dark-form textarea {
+      background-color: #0f172a;
+      color: #f1f5f9;
+      border: 1px solid #475569;
+    }
+    .dark-form label {
+      color: #e2e8f0;
+    }
+    .dark-form .kvkk-box {
+      background-color: #1e293b;
+      color: #cbd5e1;
+      border-color: #334155;
+    }
+    form {
+      max-width: 600px;
+      margin: 2rem auto;
+      background: #ffffff;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input, textarea {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    label {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    .kvkk-box {
+      font-size: 0.9rem;
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      padding: 1rem;
+      margin-top: 1rem;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="header"></div>
+
+  <div class="page-layout">
+    <aside class="sidebar">
+      <img class="avatar" src="images/zaferozmaden_avatar.jpeg" alt="Zafer Özmaden">
+      <div class="recent-posts">
+        <h3>⚡ Son Makaleler</h3>
+        <ul id="recent-posts-list"></ul>
+      </div>
+    </aside>
+
+    <main class="content">
+      <h1 style="text-align:center;">İletişim</h1>
+      <form id="contactForm" class="dark-form">
+        <label for="name">Ad Soyad</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="phone">Telefon</label>
+        <input type="tel" id="phone" name="phone" required />
+
+        <label for="email">E-posta</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="message">Mesajınız</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <div class="kvkk-box">
+          <p>
+            Bu form aracılığıyla paylaştığınız kişisel verileriniz, iletişime geçebilmek amacıyla kaydedilmektedir.
+            6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) gereği, bilgilerinizi işleyebilmemiz için onayınız gereklidir.
+          </p>
+          <input type="checkbox" id="kvkkConsent" name="kvkkConsent" />
+          <label for="kvkkConsent">KVKK Aydınlatma Metnini okudum, onaylıyorum.</label>
+        </div>
+
+        <div class="g-recaptcha" data-sitekey="6LdZ6QwrAAAAAAbh2eWkhGKSCcR7d3YNBROP7KS0" style="margin-bottom: 1rem;"></div>
+        <button type="submit">Gönder</button>
+        <p id="resultMessage" style="margin-top: 1rem;"></p>
+      </form>
+    </main>
+  </div>
+
+  <div id="footer"></div>
+
+  <script>
+    fetch("header.html")
+      .then(r => r.text())
+      .then(d => {
+        document.getElementById("header").innerHTML = d;
+        fetch("posts.json")
+          .then(p => p.json())
+          .then(posts => {
+            const list = document.getElementById("recent-posts-list");
+            if (list) {
+              posts.slice(0, 7).forEach(post => {
+                const li = document.createElement("li");
+                li.innerHTML = `<a href="${post.url}">${post.date} - ${post.title}</a>`;
+                list.appendChild(li);
+              });
+            }
+          });
+      });
+
+    fetch("footer.html")
+      .then(r => r.text())
+      .then(d => {
+        document.getElementById("footer").innerHTML = d;
+      });
+
+    document.getElementById("contactForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const name = document.getElementById("name").value;
+      const phone = document.getElementById("phone").value;
+      const email = document.getElementById("email").value;
+      const kvkk = document.getElementById("kvkkConsent").checked;
+      const result = document.getElementById("resultMessage");
+
+      if (!kvkk) {
+        result.textContent = "Lütfen KVKK onay kutusunu işaretleyin.";
+        result.style.color = "red";
+        return;
+      }
+
+      const now = new Date().toLocaleString("tr-TR");
+      const logData = `Ad Soyad: ${name}\nTelefon: ${phone}\nE-posta: ${email}\nKVKK Onay Tarihi: ${now}\n\n`;
+      localStorage.setItem("kvkk_" + Date.now(), logData);
+      result.textContent = "Mesajınız alındı, teşekkür ederiz!";
+      result.style.color = "green";
+
+      // Mail gönderme backend ile entegre edilmelidir (örn. formspree, nodemailer, vs.)
+    });
+  </script>
+
+</body>
+</html>

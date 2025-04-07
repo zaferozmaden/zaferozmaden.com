@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sayfa Başlığı</title>
+  <link rel="stylesheet" href="styles_duzenlenmis.css" />
+  <link rel="stylesheet" href="header-style.css" />
+</head>
+<body>
+
+  <div id="header"></div>
+
+  <div class="page-layout">
+    <aside class="sidebar">
+      <img class="avatar" src="images/zaferozmaden_avatar.jpeg" alt="Zafer Özmaden">
+      <div class="recent-posts">
+        <h3>⚡ Son Makaleler</h3>
+        <ul id="recent-posts-list">
+          <!-- JavaScript ile dolacak -->
+        </ul>
+      </div>
+    </aside>
+
+    <main class="content">
+      <!-- Sayfaya özel içerik buraya eklenecek -->
+      <h1 style="text-align: center;">Bu sayfa Geliştirme aşamasındadır.</h1>
+
+      <!--<p>İçerik buraya gelecek...</p> -->
+    </main>
+  </div>
+
+  <div id="footer"></div>
+
+  <script>
+    // Header
+    fetch("header.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("header").innerHTML = data;
+
+        // Sidebar son yazılar
+        fetch("posts.json")
+          .then(r => r.json())
+          .then(posts => {
+            const recentList = document.getElementById("recent-posts-list");
+            if (recentList) {
+              posts.slice(0, 7).forEach(post => {
+                const li = document.createElement("li");
+                li.innerHTML = `<a href="${post.url}">${post.date} - ${post.title}</a>`;
+                recentList.appendChild(li);
+              });
+            }
+          });
+      });
+
+    // Footer
+    fetch("footer.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("footer").innerHTML = data;
+      });
+  </script>
+
+</body>
+</html>

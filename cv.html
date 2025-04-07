@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CV - Zafer Özmaden</title>
+  <link rel="stylesheet" href="styles_duzenlenmis.css" />
+  <link rel="stylesheet" href="header-style.css" />
+</head>
+<body>
+
+  <div id="header"></div>
+
+  <div class="page-layout">
+    <aside class="sidebar">
+      <img class="avatar" src="images/zaferozmaden_avatar.jpeg" alt="Zafer Özmaden" />
+      <div class="recent-posts">
+        <h3>⚡ Son Makaleler</h3>
+        <ul id="recent-posts-list"></ul>
+      </div>
+    </aside>
+
+    <main class="content">
+      <h1 style="text-align: center;">Özgeçmiş</h1>
+
+      <section style="margin-bottom: 2rem;">
+        <h2>👤 Kişisel Bilgiler</h2>
+        <p><strong>Ad Soyad:</strong> Zafer Özmaden</p>
+        <p><strong>Doğum Tarihi:</strong> 30.08.1984</p>
+        <p><strong>E-posta:</strong> info@zaferozmaden.com</p>
+        <p><strong>Web Sitesi:</strong> www.zaferozmaden.com</p>
+      </section>
+
+      <section style="margin-bottom: 2rem;">
+        <h2>🧠 Hakkımda</h2>
+        <p>BT altyapısı, sistem yönetimi, donanım ve ağ teknolojileri alanlarında uzmanlaşmış bir bilişim profesyoneliyim. Danışmanlık, yapılandırma ve teknik destek gibi alanlarda etkin çözümler üretmekteyim. Kendi web projelerimi geliştiriyor, deneyimlerimi blog üzerinden paylaşarak sektöre katkıda bulunuyorum.</p>
+      </section>
+
+      <section style="margin-bottom: 2rem;">
+        <h2>🎓 Eğitim</h2>
+        <p>Anadolu Üniversitesi</p>
+      </section>
+
+      <section style="margin-bottom: 2rem;">
+        <h2>📜 Sertifikalar</h2>
+        <ul>
+          <li>ISO/IEC 27701:2019 Lead Auditor</li>
+          <li>ISO/IEC 27001:2022 Lead Auditor</li>
+          <li>CCNA – Cisco Certified Networking Associate</li>
+          <li>Microsoft Windows Server 2016</li>
+          <li>Sistem ve Ağ Uzmanlığı</li>
+          <li>Temel Siber Güvenlik Eğitimi</li>
+        </ul>
+      </section>
+
+      <section style="margin-bottom: 2rem;">
+        <h2>🛠️ Teknik Yetenekler</h2>
+        <ul>
+          <li>Ubuntu Server, Windows Server</li>
+          <li>Hyper-V, VirtualBox, VMware</li>
+          <li>PostgreSQL, Apache,</li>
+          <li>SSH, RDP, Firewall, VLAN</li>
+          <li>HTML, CSS, Temel JavaScript</li>
+        </ul>
+      </section>
+    </main>
+  </div>
+
+  <div id="footer"></div>
+
+  <script>
+    fetch("header.html")
+      .then(r => r.text())
+      .then(d => {
+        document.getElementById("header").innerHTML = d;
+        fetch("posts.json")
+          .then(p => p.json())
+          .then(posts => {
+            const list = document.getElementById("recent-posts-list");
+            if (list) {
+              posts.slice(0, 7).forEach(post => {
+                const li = document.createElement("li");
+                li.innerHTML = `<a href="${post.url}">${post.date} - ${post.title}</a>`;
+                list.appendChild(li);
+              });
+            }
+          });
+      });
+
+    fetch("footer.html")
+      .then(r => r.text())
+      .then(d => {
+        document.getElementById("footer").innerHTML = d;
+      });
+  </script>
+
+</body>
+</html>
