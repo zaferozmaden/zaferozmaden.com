@@ -83,7 +83,11 @@ nav ul li a:hover {
   min-height: 500px;
 }
 .blog-card {
-  min-height: 300px;
+  max-width: 300px; /* veya eski kullandığınız genişlik değeri */
+  height: auto;     /* Otomatik yükseklik */
+  padding: 15px;    /* eski iç boşluklarınızı tekrar kontrol edin */
+  margin: 10px;     /* Aralardaki boşluklar */
+  box-sizing: border-box; /* padding dahil tüm boyutların tutarlı olmasını sağlar */
 }
 .avatar {
   width: 100px;
