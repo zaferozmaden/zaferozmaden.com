@@ -6,7 +6,6 @@ body {
   display: flex;
   flex-direction: column;
 }
-
 nav ul {
   display: flex;
   justify-content: center;
@@ -15,29 +14,24 @@ nav ul {
   margin: 0;
   list-style: none;
 }
-
 nav ul li {
   margin: 0 1rem;
 }
-
 nav ul li a {
   color: white;
   text-decoration: none;
   font-weight: bold;
 }
-
 nav ul li a:hover {
   text-decoration: underline;
 }
-
 .sidebar {
   width: 250px;
   background-color: #1e293b;
   padding: 2rem 1rem;
   box-sizing: border-box;
-  min-height: 500px; /* CLS düzeltmesi: sabit alan */
+  min-height: 500px;
 }
-
 .sidebar img.avatar {
   width: 200px;
   height: 200px;
@@ -46,154 +40,57 @@ nav ul li a:hover {
   border-radius: 100%;
   object-fit: cover;
 }
-
 .recent-posts h3 {
   color: #38bdf8;
 }
-
 .recent-posts ul {
   padding-left: 0;
   list-style: none;
 }
-
 .recent-posts li {
   background-color: #334155;
   padding: 0.75rem;
   border-radius: 8px;
   transition: background-color 0.3s ease, transform 0.2s ease;
   margin-bottom: 0.5rem;
-  min-height: 50px; /* CLS düzeltmesi: sabitliyoruz */
+  min-height: 50px;
 }
-
 .recent-posts li:hover {
   background-color: #475569;
   transform: scale(1.03);
   cursor: pointer;
 }
-
 .recent-posts a {
   color: white;
   text-decoration: none;
   font-weight: bold;
 }
-
 .recent-posts a:hover {
   color: #38bdf8;
   text-decoration: underline;
 }
-
 .page-layout {
   display: flex;
   align-items: flex-start;
   min-height: 600px;
   padding: 20px;
 }
-
 .content {
   flex: 1;
   padding: 2rem;
   min-width: 0;
   min-height: 500px;
 }
-
 .blog-card {
   min-height: 300px;
 }
-
 .avatar {
   width: 100px;
   height: 100px;
   object-fit: cover;
 }
-
-/* Blog görselleri */
 .blog-card img {
   width: 100%;
   height: 200px;
   object-fit: cover;
-}
-
-/* Mobil uyumluluk - 768px ve altı için */
-@media screen and (max-width: 768px) {
-  .page-layout {
-    flex-direction: column;
-    padding: 0 1rem;
-  }
-
-  .sidebar {
-    width: 100%;
-    order: 2;
-    margin-top: 2rem;
-  }
-
-  .content {
-    width: 100%;
-    order: 1;
-    padding: 1rem;
-  }
-
-  .sidebar img.avatar {
-    width: 100px;
-    height: 100px;
-    margin: 0 auto;
-    display: block;
-  }
-
-  nav ul {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  nav ul li {
-    text-align: center;
-    font-size: 1.1rem;
-    padding: 0.5rem;
-  }
-
-  form {
-    padding: 1rem;
-  }
-
-  input,
-  textarea,
-  button {
-    font-size: 1rem;
-  }
-
-  h1,
-  h2,
-  h3,
-  p {
-    line-height: 1.6;
-    text-align: center;
-  }
-
-  .recent-posts {
-    text-align: center;
-  }
-
-  .recent-posts ul {
-    padding-left: 0;
-    list-style: none;
-  }
-
-  .recent-posts ul li a {
-    display: block;
-    padding: 0.5rem;
-    border-radius: 6px;
-  }
-
-  .recent-posts ul li a:hover {
-    background-color: #334155;
-  }
-
-  .g-recaptcha {
-    transform: scale(0.95);
-    transform-origin: 0 0;
-  }
-
-  button {
-    font-size: 1rem;
-    padding: 0.75rem;
-  }
 }

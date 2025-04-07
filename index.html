@@ -5,86 +5,56 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Anasayfa</title>
   <meta name="description" content="Zafer Özmaden'in kişisel web sitesi. BT altyapıları, sistem çözümleri ve teknik içerikler burada.">
+  <link rel="preload" href="styles_duzenlenmis.css?v=2" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="styles_duzenlenmis.css?v=2"></noscript>
+  <link rel="preload" href="header-style.css?v=2" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="header-style.css?v=2"></noscript>
   <link rel="preload" as="image" href="images/header.webp?v=1" type="image/webp">
-
-
-  <!-- CSS dosyalarını kritik istek zincirine girmeden preload ile yükle -->
-  <link rel="preload" href="styles_duzenlenmis.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="styles_duzenlenmis.css"></noscript>
-
-  <link rel="preload" href="header-style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="header-style.css"></noscript>
-
-  <!-- LCP optimizasyonu için header görseli preload -->
-  <link rel="preload" as="image" href="images/header.webp" type="image/webp">
 </head>
-
 <body>
-
   <div id="header"></div>
-
   <div class="page-layout">
     <aside class="sidebar">
-
-      <!-- Avatar görseli WebP destekli olarak güncellendi -->
       <picture>
-        <source srcset="images/zaferozmaden_avatar.webp" type="image/webp">
-        <img class="avatar" src="images/zaferozmaden_avatar.jpeg" alt="Zafer Özmaden" width="200" height="200" loading="lazy">
+        <source srcset="images/zaferozmaden_avatar.webp?v=1" type="image/webp">
+        <img class="avatar" src="images/zaferozmaden_avatar.jpeg?v=1" alt="Zafer Özmaden" width="200" height="200">
       </picture>
-
       <div class="recent-posts">
         <h3>⚡ Son Makaleler</h3>
         <ul id="recent-posts-list">
           <li>Yükleniyor...</li>
+          <li></li><li></li><li></li><li></li><li></li><li></li>
         </ul>
       </div>
     </aside>
-
-    <main class="content"> <br><br><br>
+    <main class="content">
       <h1 style="text-align: center;">Merhaba, ben Zafer Özmaden.</h1>
-      <p style="text-align: center; max-width: 800px; margin: 0 auto;"> <br><br>
-        
+      <p style="text-align: center; max-width: 800px; margin: 0 auto;">
         Bilişim dünyasında çözüm üretmenin, sistemleri ayakta tutmanın ve karmaşık yapıları sadeleştirmenin peşindeyim.
-        Donanım, sistem ve ağ altyapılarında uzun yıllara dayanan tecrübeye sahibim. Bu süreçte öğrendiğim en önemli şey:
-        Teknoloji yalnızca bilgi değil, aynı zamanda güven ve sürdürülebilirlik gerektirir.
-        Bu site, sadece bir portföy değil aynı zamanda bir bilgi kaynağı, bir günlük ve bir gelişim alanı.
-        Yolculuğumun bir parçası olmak isterseniz içerikleri takip edebilir ya da iletişime geçebilirsiniz.
-        <strong>Çünkü teknoloji yalnızca çalıştığında değil, paylaşıldığında da değerlidir.</strong>
+        Donanım, sistem ve ağ altyapılarında uzun yıllara dayanan tecrübeye sahibim. 
+        Bu site sadece bir portföy değil aynı zamanda bir bilgi kaynağıdır.
       </p>
     </main>
   </div>
-
   <div id="footer"></div>
-
   <script>
-    // HEADER + SIDEBAR
-    fetch("header.html")
-      .then(r => r.text())
-      .then(d => {
-        document.getElementById("header").innerHTML = d;
-
-        // Sidebar içerikleri
-        fetch("posts.json")
-          .then(p => p.json())
-          .then(posts => {
-            const list = document.getElementById("recent-posts-list");
-            if (list) {
-              posts.slice(0, 7).forEach(post => {
-                const li = document.createElement("li");
-                li.innerHTML = `<a href="${post.url}">${post.date} - ${post.title}</a>`;
-                list.appendChild(li);
-              });
-            }
+    fetch("header.html").then(r => r.text()).then(d => {
+      document.getElementById("header").innerHTML = d;
+      fetch("posts.json").then(p => p.json()).then(posts => {
+        const list = document.getElementById("recent-posts-list");
+        if (list) {
+          list.innerHTML = "";
+          posts.slice(0, 7).forEach(post => {
+            const li = document.createElement("li");
+            li.innerHTML = `<a href="${post.url}">${post.date} - ${post.title}</a>`;
+            list.appendChild(li);
           });
+        }
       });
-
-    // FOOTER
-    fetch("footer.html")
-      .then(r => r.text())
-      .then(d => {
-        document.getElementById("footer").innerHTML = d;
-      });
+    });
+    fetch("footer.html").then(r => r.text()).then(d => {
+      document.getElementById("footer").innerHTML = d;
+    });
   </script>
-
 </body>
 </html>

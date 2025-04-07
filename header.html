@@ -1,13 +1,7 @@
-<!-- LCP'yi hızlandırmak için preload ekliyoruz -->
-<link rel="preload" as="image" href="images/header.webp" type="image/webp">
-
-<!-- Header görseli WebP + fallback + LCP dostu (lazy kaldırıldı) -->
 <picture class="header-banner">
   <source srcset="images/header.webp?v=1" type="image/webp">
   <img src="images/header.jpg?v=1" alt="Header görseli" width="1908" height="624">
 </picture>
-
-
 <nav>
   <ul>
     <li><a href="index.html">Anasayfa</a></li>
