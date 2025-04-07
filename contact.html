@@ -33,7 +33,7 @@
     form {
       max-width: 600px;
       margin: 2rem auto;
-      background: #ffffff;
+      background: #1e293b;
       padding: 2rem;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -52,7 +52,6 @@
     }
     .kvkk-box {
       font-size: 0.9rem;
-      background: #f9f9f9;
       border: 1px solid #ddd;
       padding: 1rem;
       margin-top: 1rem;
@@ -76,11 +75,11 @@
     <main class="content">
       <h1 style="text-align:center;">İletişim</h1>
       <form
-  id="contactForm"
-  class="dark-form"
-  action="https://formspree.io/f/manelboo"
-  method="POST"
->
+        id="contactForm"
+        class="dark-form"
+        action="https://formspree.io/f/manelboo"
+        method="POST"
+      >
         <label for="name">Ad Soyad</label>
         <input type="text" id="name" name="name" required />
 
@@ -123,7 +122,7 @@
             if (list) {
               posts.slice(0, 7).forEach(post => {
                 const li = document.createElement("li");
-                li.innerHTML = `<a href="${post.url}">${post.date} - ${post.title}</a>`;
+                li.innerHTML = `<a href="\${post.url}">\${post.date} - \${post.title}</a>`;
                 list.appendChild(li);
               });
             }
@@ -136,11 +135,13 @@
         document.getElementById("footer").innerHTML = d;
       });
 
-    document.getElementById("contactForm").addEventListener("submit", function(e) {
+    document.getElementById("contactForm").addEventListener("submit", function (e) {
       e.preventDefault();
+
       const name = document.getElementById("name").value;
       const phone = document.getElementById("phone").value;
       const email = document.getElementById("email").value;
+      const message = document.getElementById("message").value;
       const kvkk = document.getElementById("kvkkConsent").checked;
       const result = document.getElementById("resultMessage");
 
@@ -151,12 +152,31 @@
       }
 
       const now = new Date().toLocaleString("tr-TR");
-      const logData = `Ad Soyad: ${name}\nTelefon: ${phone}\nE-posta: ${email}\nKVKK Onay Tarihi: ${now}\n\n`;
+      const logData = `Ad Soyad: \${name}\nTelefon: \${phone}\nE-posta: \${email}\nKVKK Onay Tarihi: \${now}\n\n`;
       localStorage.setItem("kvkk_" + Date.now(), logData);
-      result.textContent = "Mesajınız alındı, teşekkür ederiz!";
-      result.style.color = "green";
 
-      // Mail gönderme backend ile entegre edilmelidir (örn. formspree, nodemailer, vs.)
+      fetch("https://formspree.io/f/manelboo", {
+        method: "POST",
+        headers: {
+          "Accept": "application/json"
+        },
+        body: new FormData(this)
+      })
+      .then(response => {
+        if (response.ok) {
+          result.textContent = "Mesajınız başarıyla gönderildi!";
+          result.style.color = "limegreen";
+          document.getElementById("contactForm").reset();
+        } else {
+          result.textContent = "Mesaj gönderilemedi. Lütfen tekrar deneyin.";
+          result.style.color = "red";
+        }
+      })
+      .catch(error => {
+        console.error("Form gönderim hatası:", error);
+        result.textContent = "Bir hata oluştu. Lütfen tekrar deneyin.";
+        result.style.color = "red";
+      });
     });
   </script>
 
