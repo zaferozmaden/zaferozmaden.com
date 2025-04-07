@@ -122,7 +122,7 @@
             if (list) {
               posts.slice(0, 7).forEach(post => {
                 const li = document.createElement("li");
-                li.innerHTML = `<a href="\${post.url}">\${post.date} - \${post.title}</a>`;
+                li.innerHTML = `<a href="${post.url}">${post.date} - ${post.title}</a>`;
                 list.appendChild(li);
               });
             }
