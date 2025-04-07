@@ -117,10 +117,30 @@ html, body {
   .header-menu {
     flex-direction: column;
     align-items: center;
+    display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   }
 
   .header-menu li {
     width: 100%;
     text-align: center;
   }
+  @media screen and (max-width: 768px) {
+  .header-menu {
+    flex-direction: column;
+  }
+
+    @media screen and (max-width: 768px) {
+  .sidebar {
+    position: relative; /* sabitliği kaldırır */
+    width: 100%; 
+    order: 2; /* içeriğin altında kalması sağlanır */
+  }
+
+  .content {
+    order: 1;
+  }
+}
+}
 }
