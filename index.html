@@ -5,9 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Anasayfa</title>
   <meta name="description" content="Zafer Özmaden'in kişisel web sitesi. BT altyapıları, sistem çözümleri ve teknik içerikler burada.">
-  <link rel="stylesheet" href="styles_duzenlenmis.css" />
-  <link rel="stylesheet" href="header-style.css" />
+
+  <!-- CSS dosyalarını kritik istek zincirine girmeden preload ile yükle -->
+  <link rel="preload" href="styles_duzenlenmis.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="styles_duzenlenmis.css"></noscript>
+
+  <link rel="preload" href="header-style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="header-style.css"></noscript>
+
+  <!-- LCP optimizasyonu için header görseli preload -->
+  <link rel="preload" as="image" href="images/header.webp" type="image/webp">
 </head>
+
 <body>
 
   <div id="header"></div>
