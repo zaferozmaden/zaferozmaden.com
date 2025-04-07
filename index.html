@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -15,7 +14,13 @@
 
   <div class="page-layout">
     <aside class="sidebar">
-      <img class="avatar" src="images/zaferozmaden_avatar.jpeg" alt="Zafer Özmaden" width="200" height="200" loading="lazy">
+
+      <!-- Avatar görseli WebP destekli olarak güncellendi -->
+      <picture>
+        <source srcset="images/zaferozmaden_avatar.webp" type="image/webp">
+        <img class="avatar" src="images/zaferozmaden_avatar.jpeg" alt="Zafer Özmaden" width="200" height="200" loading="lazy">
+      </picture>
+
       <div class="recent-posts">
         <h3>⚡ Son Makaleler</h3>
         <ul id="recent-posts-list">
