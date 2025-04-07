@@ -84,3 +84,55 @@ nav ul li a:hover {
   padding: 2rem;
   min-width: 0; /* çok önemli: taşmayı engeller */
 }
+
+
+/* Mobil uyumluluk - 768px ve altı için */
+@media screen and (max-width: 768px) {
+  .page-layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    order: 2;
+    margin-top: 2rem;
+  }
+
+  .content {
+    width: 100%;
+    order: 1;
+    padding: 1rem;
+  }
+
+  .sidebar img.avatar {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    display: block;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  nav ul li {
+    text-align: center;
+  }
+
+  form {
+    padding: 1rem;
+  }
+
+  input, textarea, button {
+    font-size: 1rem;
+  }
+
+  h1, h2, h3 {
+    text-align: center;
+  }
+
+  .recent-posts {
+    text-align: center;
+  }
+}
