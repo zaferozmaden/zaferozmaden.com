@@ -191,4 +191,14 @@ nav ul li a:hover {
     font-size: 1rem;
     padding: 0.75rem;
   }
+
+/* CLS düzeltmeleri */
+.sidebar {
+  min-height: 400px;
+}
+
+.recent-posts li {
+  min-height: 50px;
+}
+
 }
