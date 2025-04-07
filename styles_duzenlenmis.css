@@ -136,3 +136,45 @@ nav ul li a:hover {
     text-align: center;
   }
 }
+
+
+/* Mobil geliştirmeler */
+@media screen and (max-width: 768px) {
+  nav ul li {
+    font-size: 1.1rem;
+    padding: 0.5rem;
+  }
+
+  .page-layout {
+    padding: 0 1rem;
+  }
+
+  h1, h2, h3, p {
+    line-height: 1.6;
+  }
+
+  .g-recaptcha {
+    transform: scale(0.95);
+    transform-origin: 0 0;
+  }
+
+  button {
+    font-size: 1rem;
+    padding: 0.75rem;
+  }
+
+  .recent-posts ul {
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .recent-posts ul li a {
+    display: block;
+    padding: 0.5rem;
+    border-radius: 6px;
+  }
+
+  .recent-posts ul li a:hover {
+    background-color: #334155;
+  }
+}
