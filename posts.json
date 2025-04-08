@@ -1,10 +1,10 @@
 [
   {
-    "title": "Windows Server 2025 Tanıtımı",
-    "date": "05.04.2025",
-    "preview": "Gelişmiş güvenlik özellikleri, bulut entegrasyonu ve performans iyileştirmeleriyle dikkati çeker.",
-    "url": "blog-post-windows2025.html",
-    "category": "Windows"
+    "title": "ChatGPT Nedir?",
+    "date": "08.04.2025",
+    "preview": "ChatGPT’nin Doğuşu ve Tarihçesi",
+    "url": "Chatgpt.html",
+    "category": "Teknoloji"
   },
   {
     "title": "Ubuntu'da Web Sitesi Yayınlama",
@@ -20,21 +20,6 @@
     "url": "blog-post-snipteit.html",
     "category": "Yazlım"
   },
-  
-  {
-    "title": "Güvenli Bağlantı Yöntemleri",
-    "date": "04.02.2025",
-    "preview": "GSunuculara uzaktan erişim sağlamak, sistem yönetiminin temel bileşenlerinden biridir.",
-    "url": "blog-post-guvenli-baglanti-yontemleri.html",
-    "category": "IT"
-  },
-  {
-    "title": "SSH Kullanımı",
-    "date": "14.01.2025",
-    "preview": "SSH (Secure Shell), uzak sistemlere güvenli bir şekilde erişim sağlamak için kullanılan bir protokoldür.",
-    "url": "blog-post-ssh.html",
-    "category": "IT"
-  },
     {
     "title": "Windows Server 2022 Tanıtımı",
     "date": "29.12.2024",
@@ -42,13 +27,34 @@
     "url": "blog-post-windows2022.html",
     "category": "Windows"
   },
-  
+
+  {
+    "title": "SSH Kullanımı",
+    "date": "14.01.2025",
+    "preview": "SSH (Secure Shell), uzak sistemlere güvenli bir şekilde erişim sağlamak için kullanılan bir protokoldür.",
+    "url": "blog-post-ssh.html",
+    "category": "IT"
+  },
+
   {
     "title": "Yedekleme Stratejileri",
     "date": "01.12.2024",
     "preview": "Veri, çağımızın en değerli varlıklarından biridir.",
     "url": "blog-post-yedekleme-stratejileri.html",
     "category": "IT"
+  },
+  {
+    "title": "Windows Server 2025 Tanıtımı",
+    "date": "05.04.2025",
+    "preview": "Gelişmiş güvenlik özellikleri, bulut entegrasyonu ve performans iyileştirmeleriyle dikkati çeker.",
+    "url": "blog-post-windows2025.html",
+    "category": "Windows"
+  },
+  {
+    "title": "Güvenli Bağlantı Yöntemleri",
+    "date": "04.02.2025",
+    "preview": "GSunuculara uzaktan erişim sağlamak, sistem yönetiminin temel bileşenlerinden biridir.",
+    "url": "blog-post-guvenli-baglanti-yontemleri.html",
+    "category": "IT"
   }
- 
 ]
