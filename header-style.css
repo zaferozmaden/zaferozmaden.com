@@ -6,3 +6,5 @@
   background: url('images/header.webp') no-repeat center center;
   background-size: cover;
 }
+
+.recent-posts { min-height: 300px; }
