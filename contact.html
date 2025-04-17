@@ -1,14 +1,15 @@
 
 <!DOCTYPE html>
+
 <html lang="tr">
 <head>
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>İletişim - Zafer Özmaden</title>
-  <link rel="stylesheet" href="styles_duzenlenmis.css" />
-  <link rel="stylesheet" href="header-style.css" />
-  <style>
+<script async="" defer="" src="https://www.google.com/recaptcha/api.js"></script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>İletişim - Zafer Özmaden</title>
+<link href="styles_duzenlenmis.css" rel="stylesheet"/>
+<link href="header-style.css" rel="stylesheet"/>
+<style>
     body {
       background-color: #0f172a;
       color: #f1f5f9;
@@ -60,57 +61,42 @@
   </style>
 </head>
 <body>
-
-  <div id="header"></div>
-
-  <div class="page-layout" style="min-height: 400px;">
-    <aside class="sidebar">
-      <img class="avatar" src="images/zaferozmaden_avatar.jpeg" alt="Zafer Özmaden" width="200" height="200" loading="lazy">
-      <div class="recent-posts">
-        <h3>⚡ Son Makaleler</h3>
-        <ul id="recent-posts-list"></ul>
-      </div>
-    </aside>
-
-    <main class="content">
-      <h1 style="text-align:center;">İletişim</h1>
-      <form
-        id="contactForm"
-        class="dark-form"
-        action="https://formspree.io/f/manelboo"
-        method="POST"
-      >
-        <label for="name">Ad Soyad</label>
-        <input type="text" id="name" name="name" required />
-
-        <label for="phone">Telefon</label>
-        <input type="tel" id="phone" name="phone" required />
-
-        <label for="email">E-posta</label>
-        <input type="email" id="email" name="email" required />
-
-        <label for="message">Mesajınız</label>
-        <textarea id="message" name="message" rows="5" required></textarea>
-
-        <div class="kvkk-box">
-          <p>
+<div id="header"></div>
+<div class="page-layout" style="min-height: 400px;">
+<aside class="sidebar">
+<img alt="Zafer Özmaden" class="avatar" height="200" loading="lazy" src="images/zaferozmaden_avatar.jpeg" width="200"/>
+<div class="recent-posts">
+<h3>⚡ Son Makaleler</h3>
+<ul id="recent-posts-list"></ul>
+</div>
+</aside>
+<main class="content">
+<h1 style="text-align:center;">İletişim</h1>
+<form action="https://formspree.io/f/manelboo" class="dark-form" id="contactForm" method="POST">
+<label for="name">Ad Soyad</label>
+<input id="name" name="name" required="" type="text"/>
+<label for="phone">Telefon</label>
+<input id="phone" name="phone" required="" type="tel"/>
+<label for="email">E-posta</label>
+<input id="email" name="email" required="" type="email"/>
+<label for="message">Mesajınız</label>
+<textarea id="message" name="message" required="" rows="5"></textarea>
+<div class="kvkk-box">
+<p>
             Bu form aracılığıyla paylaştığınız kişisel verileriniz, iletişime geçebilmek amacıyla kaydedilmektedir.
             6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) gereği, bilgilerinizi işleyebilmemiz için onayınız gereklidir.
           </p>
-          <input type="checkbox" id="kvkkConsent" name="kvkkConsent" />
-          <label for="kvkkConsent">KVKK Aydınlatma Metnini okudum, onaylıyorum.</label>
-        </div>
-
-        <div class="g-recaptcha" data-sitekey="6LdZ6QwrAAAAAAbh2eWkhGKSCcR7d3YNBROP7KS0" style="margin-bottom: 1rem;"></div>
-        <button type="submit">Gönder</button>
-        <p id="resultMessage" style="margin-top: 1rem;"></p>
-      </form>
-    </main>
-  </div>
-
-  <div id="footer"></div>
-
-  <script>
+<input id="kvkkConsent" name="kvkkConsent" type="checkbox"/>
+<label for="kvkkConsent">KVKK Aydınlatma Metnini okudum, onaylıyorum.</label>
+</div>
+<div class="g-recaptcha" data-sitekey="6LdZ6QwrAAAAAAbh2eWkhGKSCcR7d3YNBROP7KS0" style="margin-bottom: 1rem;"></div>
+<button type="submit">Gönder</button>
+<p id="resultMessage" style="margin-top: 1rem;"></p>
+</form>
+</main>
+</div>
+<div id="footer"></div>
+<script>
     fetch("header.html")
       .then(r => r.text())
       .then(d => {
@@ -179,6 +165,5 @@
       });
     });
   </script>
-
 </body>
 </html>

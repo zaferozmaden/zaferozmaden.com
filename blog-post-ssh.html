@@ -1,96 +1,88 @@
 
 <!DOCTYPE html>
+
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>En Sık Kullanılan SSH Komutları ve Hata Mesajları</title>
-  <link rel="stylesheet" href="styles_duzenlenmis.css" />
-  <link rel="stylesheet" href="header-style.css" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>En Sık Kullanılan SSH Komutları ve Hata Mesajları</title>
+<link href="styles_duzenlenmis.css" rel="stylesheet"/>
+<link href="header-style.css" rel="stylesheet"/>
 </head>
 <body>
-  <div id="header"></div>
-
-  <div class="page-layout" style="min-height: 400px;">
-    <aside class="sidebar">
-      <img class="avatar" src="images/zaferozmaden_avatar.jpeg" alt="Zafer Özmaden" width="200" height="200" loading="lazy">
-      <div class="recent-posts">
-        <h3>⚡ Son Makaleler</h3>
-        <ul id="recent-posts-list"></ul>
-      </div>
-    </aside>
-
-    <main class="content">
-      <h1>En Sık Kullanılan SSH Komutları ve Hata Mesajları</h1>
-      <p><strong>Yazar:</strong> Zafer Özmaden</p>
-
-      <h2>🔑 SSH Nedir?</h2>
-      <p>SSH (Secure Shell), uzak sistemlere güvenli bir şekilde erişim sağlamak için kullanılan bir protokoldür. Özellikle Ubuntu gibi Linux sunucularla çalışırken sistem yöneticilerinin vazgeçilmezidir.</p>
-
-      <h2>🧪 Temel SSH Komutları</h2>
-      <ul>
-        <li><code>ssh kullanıcı@ip_adresi</code> – Uzak sunucuya bağlanır</li>
-        <li><code>ssh -p 2222 kullanıcı@ip</code> – Belirli bir port üzerinden bağlantı</li>
-        <li><code>ssh -i anahtar.pem kullanıcı@ip</code> – Anahtar dosyası ile bağlantı</li>
-        <li><code>scp dosya kullanıcı@ip:/hedef/klasör</code> – Dosya gönderir</li>
-        <li><code>sshfs kullanıcı@ip:/klasör ./yerel</code> – Sunucu klasörünü yerel sisteme mount eder</li>
-      </ul>
-
-      <h2>🚨 Sık Karşılaşılan Hata Mesajları ve Çözümleri</h2>
-      <table style="width:100%; border-collapse: collapse;">
-        <thead>
-          <tr>
-            <th style="border:1px solid #ccc; padding:8px;">Hata</th>
-            <th style="border:1px solid #ccc; padding:8px;">Açıklama</th>
-            <th style="border:1px solid #ccc; padding:8px;">Çözüm</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td style="border:1px solid #ccc; padding:8px;">Connection refused</td>
-            <td style="border:1px solid #ccc; padding:8px;">Sunucu SSH bağlantılarını kabul etmiyor.</td>
-            <td style="border:1px solid #ccc; padding:8px;">SSH servisi açık mı? <code>sudo systemctl status ssh</code></td>
-          </tr>
-          <tr>
-            <td style="border:1px solid #ccc; padding:8px;">Permission denied</td>
-            <td style="border:1px solid #ccc; padding:8px;">Kullanıcı adı veya anahtar hatalı.</td>
-            <td style="border:1px solid #ccc; padding:8px;">Kullanıcı adı doğru mu? Anahtar izni 600 mü?</td>
-          </tr>
-          <tr>
-            <td style="border:1px solid #ccc; padding:8px;">Host key verification failed</td>
-            <td style="border:1px solid #ccc; padding:8px;">Sunucunun kimliği değişmiş olabilir.</td>
-            <td style="border:1px solid #ccc; padding:8px;"><code>~/.ssh/known_hosts</code> dosyasından ilgili satırı sil.</td>
-          </tr>
-          <tr>
-            <td style="border:1px solid #ccc; padding:8px;">Connection timed out</td>
-            <td style="border:1px solid #ccc; padding:8px;">Sunucuya ulaşılamıyor.</td>
-            <td style="border:1px solid #ccc; padding:8px;">IP adresi doğru mu? Güvenlik duvarı bağlantıya izin veriyor mu?</td>
-          </tr>
-          <tr>
-            <td style="border:1px solid #ccc; padding:8px;">No route to host</td>
-            <td style="border:1px solid #ccc; padding:8px;">Ağ yapılandırması hatalı.</td>
-            <td style="border:1px solid #ccc; padding:8px;">Sunucu açık mı? Ağ bağlantısı doğru mu?</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h2>🔒 Ekstra Güvenlik Önerileri</h2>
-      <ul>
-        <li><code>/etc/ssh/sshd_config</code> dosyasından <code>PermitRootLogin no</code> yap</li>
-        <li>Anahtar tabanlı bağlantı kullan, parola ile değil</li>
-        <li>Varsayılan 22 portunu değiştir</li>
-        <li>İki faktörlü kimlik doğrulaması (2FA) uygula</li>
-        <li>Giriş denemelerini sınırlamak için <code>fail2ban</code> kullan</li>
-      </ul>
-
-      <h2>🧠 Sonuç</h2>
-      <p>SSH bağlantısı kurulamadığında panik yapma. Hata mesajları doğru okunduğunda çözüm genellikle nettir. Bu makale ile Ubuntu sunuculara güvenle bağlanmak ve sıkça karşılaşılan problemleri aşmak artık çok daha kolay.</p>
-    </main>
-  </div>
-
-  <div id="footer"></div>
-
-  <script>
+<div id="header"></div>
+<div class="page-layout" style="min-height: 400px;">
+<aside class="sidebar">
+<img alt="Zafer Özmaden" class="avatar" height="200" loading="lazy" src="images/zaferozmaden_avatar.jpeg" width="200"/>
+<div class="recent-posts">
+<h3>⚡ Son Makaleler</h3>
+<ul id="recent-posts-list"></ul>
+</div>
+</aside>
+<main class="content">
+<h1>En Sık Kullanılan SSH Komutları ve Hata Mesajları</h1>
+<p><strong>Yazar:</strong> Zafer Özmaden</p>
+<h2>🔑 SSH Nedir?</h2>
+<p>SSH (Secure Shell), uzak sistemlere güvenli bir şekilde erişim sağlamak için kullanılan bir protokoldür. Özellikle Ubuntu gibi Linux sunucularla çalışırken sistem yöneticilerinin vazgeçilmezidir.</p>
+<h2>🧪 Temel SSH Komutları</h2>
+<ul>
+<li><code>ssh kullanıcı@ip_adresi</code> – Uzak sunucuya bağlanır</li>
+<li><code>ssh -p 2222 kullanıcı@ip</code> – Belirli bir port üzerinden bağlantı</li>
+<li><code>ssh -i anahtar.pem kullanıcı@ip</code> – Anahtar dosyası ile bağlantı</li>
+<li><code>scp dosya kullanıcı@ip:/hedef/klasör</code> – Dosya gönderir</li>
+<li><code>sshfs kullanıcı@ip:/klasör ./yerel</code> – Sunucu klasörünü yerel sisteme mount eder</li>
+</ul>
+<h2>🚨 Sık Karşılaşılan Hata Mesajları ve Çözümleri</h2>
+<table style="width:100%; border-collapse: collapse;">
+<thead>
+<tr>
+<th style="border:1px solid #ccc; padding:8px;">Hata</th>
+<th style="border:1px solid #ccc; padding:8px;">Açıklama</th>
+<th style="border:1px solid #ccc; padding:8px;">Çözüm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="border:1px solid #ccc; padding:8px;">Connection refused</td>
+<td style="border:1px solid #ccc; padding:8px;">Sunucu SSH bağlantılarını kabul etmiyor.</td>
+<td style="border:1px solid #ccc; padding:8px;">SSH servisi açık mı? <code>sudo systemctl status ssh</code></td>
+</tr>
+<tr>
+<td style="border:1px solid #ccc; padding:8px;">Permission denied</td>
+<td style="border:1px solid #ccc; padding:8px;">Kullanıcı adı veya anahtar hatalı.</td>
+<td style="border:1px solid #ccc; padding:8px;">Kullanıcı adı doğru mu? Anahtar izni 600 mü?</td>
+</tr>
+<tr>
+<td style="border:1px solid #ccc; padding:8px;">Host key verification failed</td>
+<td style="border:1px solid #ccc; padding:8px;">Sunucunun kimliği değişmiş olabilir.</td>
+<td style="border:1px solid #ccc; padding:8px;"><code>~/.ssh/known_hosts</code> dosyasından ilgili satırı sil.</td>
+</tr>
+<tr>
+<td style="border:1px solid #ccc; padding:8px;">Connection timed out</td>
+<td style="border:1px solid #ccc; padding:8px;">Sunucuya ulaşılamıyor.</td>
+<td style="border:1px solid #ccc; padding:8px;">IP adresi doğru mu? Güvenlik duvarı bağlantıya izin veriyor mu?</td>
+</tr>
+<tr>
+<td style="border:1px solid #ccc; padding:8px;">No route to host</td>
+<td style="border:1px solid #ccc; padding:8px;">Ağ yapılandırması hatalı.</td>
+<td style="border:1px solid #ccc; padding:8px;">Sunucu açık mı? Ağ bağlantısı doğru mu?</td>
+</tr>
+</tbody>
+</table>
+<h2>🔒 Ekstra Güvenlik Önerileri</h2>
+<ul>
+<li><code>/etc/ssh/sshd_config</code> dosyasından <code>PermitRootLogin no</code> yap</li>
+<li>Anahtar tabanlı bağlantı kullan, parola ile değil</li>
+<li>Varsayılan 22 portunu değiştir</li>
+<li>İki faktörlü kimlik doğrulaması (2FA) uygula</li>
+<li>Giriş denemelerini sınırlamak için <code>fail2ban</code> kullan</li>
+</ul>
+<h2>🧠 Sonuç</h2>
+<p>SSH bağlantısı kurulamadığında panik yapma. Hata mesajları doğru okunduğunda çözüm genellikle nettir. Bu makale ile Ubuntu sunuculara güvenle bağlanmak ve sıkça karşılaşılan problemleri aşmak artık çok daha kolay.</p>
+</main>
+</div>
+<div id="footer"></div>
+<script>
     fetch("header.html")
       .then(r => r.text())
       .then(d => {

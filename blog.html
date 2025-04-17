@@ -1,13 +1,14 @@
 
 <!DOCTYPE html>
+
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Blog</title>
-  <link rel="stylesheet" href="styles_duzenlenmis.css" />
-  <link rel="stylesheet" href="header-style.css" />
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Blog</title>
+<link href="styles_duzenlenmis.css" rel="stylesheet"/>
+<link href="header-style.css" rel="stylesheet"/>
+<style>
     /* animasyon: fade in up */
     .blog-card {
       opacity: 0;
@@ -28,33 +29,28 @@
   </style>
 </head>
 <body>
-
-  <div id="header"></div>
-
-  <div class="page-layout" style="min-height: 400px;">
-    <aside class="sidebar">
-      <img class="avatar" src="images/zaferozmaden_avatar.jpeg" alt="Zafer Özmaden" width="200" height="200" loading="lazy">
-      <div class="recent-posts">
-        <h3>⚡ Son Makaleler</h3>
-        <ul id="recent-posts-list"></ul>
-      </div>
-    </aside>
-
-    <main class="content">
-      <h1 style="text-align: center;">Bilgi Paylaştıkça Değerlenir</h1>
-      <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem;">
-        <input type="text" id="searchInput" placeholder="Ara..." style="padding: 0.5rem; width: 200px; border-radius: 6px; border: none;">
-        <select id="categoryFilter" style="padding: 0.5rem; border-radius: 6px;">
-          <option value="">Tüm Kategoriler</option>
-        </select>
-      </div>
-      <div class="blog-list" id="blog-list" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;"></div>
-    </main>
-  </div>
-
-  <div id="footer"></div>
-
-  <script>
+<div id="header"></div>
+<div class="page-layout" style="min-height: 400px;">
+<aside class="sidebar">
+<img alt="Zafer Özmaden" class="avatar" height="200" loading="lazy" src="images/zaferozmaden_avatar.jpeg" width="200"/>
+<div class="recent-posts">
+<h3>⚡ Son Makaleler</h3>
+<ul id="recent-posts-list"></ul>
+</div>
+</aside>
+<main class="content">
+<h1 style="text-align: center;">Bilgi Paylaştıkça Değerlenir</h1>
+<div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem;">
+<input id="searchInput" placeholder="Ara..." style="padding: 0.5rem; width: 200px; border-radius: 6px; border: none;" type="text"/>
+<select id="categoryFilter" style="padding: 0.5rem; border-radius: 6px;">
+<option value="">Tüm Kategoriler</option>
+</select>
+</div>
+<div class="blog-list" id="blog-list" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;"></div>
+</main>
+</div>
+<div id="footer"></div>
+<script>
     let allPosts = [];
 
     const blogList = document.getElementById("blog-list");
@@ -140,6 +136,5 @@
         document.getElementById("footer").innerHTML = data;
       });
   </script>
-
 </body>
 </html>

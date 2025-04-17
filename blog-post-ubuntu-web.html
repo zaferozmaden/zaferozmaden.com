@@ -1,76 +1,63 @@
 
 <!DOCTYPE html>
+
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ubuntu Sunucuda Web Sitesi Yayınlamak</title>
-  <link rel="stylesheet" href="styles_duzenlenmis.css" />
-  <link rel="stylesheet" href="header-style.css" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ubuntu Sunucuda Web Sitesi Yayınlamak</title>
+<link href="styles_duzenlenmis.css" rel="stylesheet"/>
+<link href="header-style.css" rel="stylesheet"/>
 </head>
 <body>
-
-  <div id="header"></div>
-
-  <div class="page-layout" style="min-height: 400px;">
-    <aside class="sidebar">
-      <img class="avatar" src="images/zaferozmaden_avatar.jpeg" alt="Zafer Özmaden" width="200" height="200" loading="lazy">
-      <div class="recent-posts">
-        <h3>⚡ Son Makaleler</h3>
-        <ul id="recent-posts-list"></ul>
-      </div>
-    </aside>
-
-    <main class="content">
-      <h1>Ubuntu Sunucuda Web Sitesi Yayınlamak: Adım Adım Kurulum Rehberi</h1>
-      <p><strong>Yazar:</strong> Zafer Özmaden </p>
-
-      <h2>🌐 Giriş</h2>
-      <p>Kendi web sitenizi bir Ubuntu sunucu üzerinde yayınlamak, hem maliyet açısından verimlidir hem de sistem üzerinde tam kontrol sağlar. Bu yazıda, Ubuntu sunucuda statik ya da dinamik bir web sitesi kurmak için izlemeniz gereken temel adımları paylaşıyorum.</p>
-
-      <h2>🧱 1. Gerekli Ortamın Hazırlanması</h2>
-      <pre><code>lsb_release -a</code></pre>
-      <pre><code>ssh kullaniciadi@sunucu_ip</code></pre>
-
-      <h2>🔧 2. Apache veya Nginx Kurulumu</h2>
-      <h3>Apache:</h3>
-      <pre><code>sudo apt update
+<div id="header"></div>
+<div class="page-layout" style="min-height: 400px;">
+<aside class="sidebar">
+<img alt="Zafer Özmaden" class="avatar" height="200" loading="lazy" src="images/zaferozmaden_avatar.jpeg" width="200"/>
+<div class="recent-posts">
+<h3>⚡ Son Makaleler</h3>
+<ul id="recent-posts-list"></ul>
+</div>
+</aside>
+<main class="content">
+<h1>Ubuntu Sunucuda Web Sitesi Yayınlamak: Adım Adım Kurulum Rehberi</h1>
+<p><strong>Yazar:</strong> Zafer Özmaden </p>
+<h2>🌐 Giriş</h2>
+<p>Kendi web sitenizi bir Ubuntu sunucu üzerinde yayınlamak, hem maliyet açısından verimlidir hem de sistem üzerinde tam kontrol sağlar. Bu yazıda, Ubuntu sunucuda statik ya da dinamik bir web sitesi kurmak için izlemeniz gereken temel adımları paylaşıyorum.</p>
+<h2>🧱 1. Gerekli Ortamın Hazırlanması</h2>
+<pre><code>lsb_release -a</code></pre>
+<pre><code>ssh kullaniciadi@sunucu_ip</code></pre>
+<h2>🔧 2. Apache veya Nginx Kurulumu</h2>
+<h3>Apache:</h3>
+<pre><code>sudo apt update
 sudo apt install apache2 -y</code></pre>
-      <p>Tarayıcıdan: <code>http://sunucu_ip</code></p>
-
-      <h3>Nginx:</h3>
-      <pre><code>sudo apt install nginx -y
+<p>Tarayıcıdan: <code>http://sunucu_ip</code></p>
+<h3>Nginx:</h3>
+<pre><code>sudo apt install nginx -y
 systemctl status nginx</code></pre>
-
-      <h2>📁 3. Web Dosyalarının Yerleştirilmesi</h2>
-      <pre><code>sudo rm /var/www/html/index.html
+<h2>📁 3. Web Dosyalarının Yerleştirilmesi</h2>
+<pre><code>sudo rm /var/www/html/index.html
 sudo cp -r /home/kullaniciadi/sitem/* /var/www/html/
 sudo chown -R www-data:www-data /var/www/html/</code></pre>
-
-      <h2>🌍 4. Alan Adı (Opsiyonel)</h2>
-      <pre><code>sudo nano /etc/apache2/sites-available/sitem.com.conf</code></pre>
-      <pre><code>&lt;VirtualHost *:80&gt;
+<h2>🌍 4. Alan Adı (Opsiyonel)</h2>
+<pre><code>sudo nano /etc/apache2/sites-available/sitem.com.conf</code></pre>
+<pre><code>&lt;VirtualHost *:80&gt;
     ServerName sitem.com
     DocumentRoot /var/www/html/
 &lt;/VirtualHost&gt;</code></pre>
-      <pre><code>sudo a2ensite sitem.com.conf
+<pre><code>sudo a2ensite sitem.com.conf
 sudo systemctl reload apache2</code></pre>
-
-      <h2>🔒 5. HTTPS Sertifikası (Let’s Encrypt)</h2>
-      <pre><code>sudo apt install certbot python3-certbot-apache -y
+<h2>🔒 5. HTTPS Sertifikası (Let’s Encrypt)</h2>
+<pre><code>sudo apt install certbot python3-certbot-apache -y
 sudo certbot --apache</code></pre>
-
-      <h2>✅ 6. Test Etme</h2>
-      <p>Tarayıcıdan: <code>http://sitem.com</code> veya <code>https://sitem.com</code></p>
-
-      <h2>🧠 Sonuç</h2>
-      <p>Ubuntu üzerinde web yayını yapmak, hem teknik becerilerinizi geliştirir hem de altyapınızı özgürce yönetmenizi sağlar. Apache veya Nginx gibi açık kaynak çözümlerle düşük maliyetli ama profesyonel düzeyde bir sunum gerçekleştirebilirsiniz.</p>
-    </main>
-  </div>
-
-  <div id="footer"></div>
-
-  <script>
+<h2>✅ 6. Test Etme</h2>
+<p>Tarayıcıdan: <code>http://sitem.com</code> veya <code>https://sitem.com</code></p>
+<h2>🧠 Sonuç</h2>
+<p>Ubuntu üzerinde web yayını yapmak, hem teknik becerilerinizi geliştirir hem de altyapınızı özgürce yönetmenizi sağlar. Apache veya Nginx gibi açık kaynak çözümlerle düşük maliyetli ama profesyonel düzeyde bir sunum gerçekleştirebilirsiniz.</p>
+</main>
+</div>
+<div id="footer"></div>
+<script>
     fetch("header.html")
       .then(r => r.text())
       .then(d => {
@@ -96,6 +83,5 @@ sudo certbot --apache</code></pre>
         document.getElementById("footer").innerHTML = d;
       });
   </script>
-
 </body>
 </html>

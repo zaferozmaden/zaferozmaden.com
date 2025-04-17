@@ -1,115 +1,105 @@
 
 <!DOCTYPE html>
+
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sunuculara Güvenli Bağlantı Yöntemleri</title>
-  <link rel="stylesheet" href="styles_duzenlenmis.css" />
-  <link rel="stylesheet" href="header-style.css" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sunuculara Güvenli Bağlantı Yöntemleri</title>
+<link href="styles_duzenlenmis.css" rel="stylesheet"/>
+<link href="header-style.css" rel="stylesheet"/>
 </head>
 <body>
-  <div id="header"></div>
-
-  <div class="page-layout" style="min-height: 400px;">
-    <aside class="sidebar">
-      <img class="avatar" src="images/zaferozmaden_avatar.jpeg" alt="Zafer Özmaden" width="200" height="200" loading="lazy">
-      <div class="recent-posts">
-        <h3>⚡ Son Makaleler</h3>
-        <ul id="recent-posts-list"></ul>
-      </div>
-    </aside>
-
-    <main class="content">
-      <h1>Sunuculara Güvenli Bağlantı Yöntemleri: SSH, RDP, PAM ve Daha Fazlası</h1>
-      <p><strong>Yazar:</strong> Zafer Özmaden</p>
-
-      <h2>🔐 Giriş</h2>
-      <p>Sunuculara uzaktan erişim sağlamak, sistem yönetiminin temel bileşenlerinden biridir. Ancak bu bağlantıların güvenli olması, sistemin bütünlüğünü korumak adına kritiktir. Bu yazıda hem Linux (özellikle Ubuntu) hem de Windows sunuculara yönelik yaygın bağlantı yöntemlerini, artı ve eksileriyle birlikte ele alıyoruz.</p>
-
-      <h2>🧭 Temel Bağlantı Protokolleri</h2>
-      <ul>
-        <li><strong>SSH (Secure Shell):</strong> Linux sistemlerde standart uzaktan bağlantı protokolüdür. Şifreli iletişim, anahtar doğrulama, port yönlendirme gibi özellikleri destekler.</li>
-        <li><strong>RDP (Remote Desktop Protocol):</strong> Windows sunuculara grafiksel erişim sağlar. Kullanımı kolaydır ancak doğru yapılandırılmazsa güvenlik açığı doğurabilir.</li>
-        <li><strong>PAM (Privileged Access Management):</strong> Linux’ta kimlik doğrulama mekanizmasını modüler hale getirir. SSH dahil birçok servis için merkezi güvenlik politikaları uygulanabilir.</li>
-        <li><strong>VPN (Virtual Private Network):</strong> Uzak kullanıcıların özel bir ağdaymış gibi güvenli bağlantı kurmasını sağlar.</li>
-        <li><strong>MFA/2FA:</strong> İki adımlı doğrulama ile bağlantı güvenliğini katlar. SSH ve RDP ile entegre edilebilir.</li>
-      </ul>
-
-      
+<div id="header"></div>
+<div class="page-layout" style="min-height: 400px;">
+<aside class="sidebar">
+<img alt="Zafer Özmaden" class="avatar" height="200" loading="lazy" src="images/zaferozmaden_avatar.jpeg" width="200"/>
+<div class="recent-posts">
+<h3>⚡ Son Makaleler</h3>
+<ul id="recent-posts-list"></ul>
+</div>
+</aside>
+<main class="content">
+<h1>Sunuculara Güvenli Bağlantı Yöntemleri: SSH, RDP, PAM ve Daha Fazlası</h1>
+<p><strong>Yazar:</strong> Zafer Özmaden</p>
+<h2>🔐 Giriş</h2>
+<p>Sunuculara uzaktan erişim sağlamak, sistem yönetiminin temel bileşenlerinden biridir. Ancak bu bağlantıların güvenli olması, sistemin bütünlüğünü korumak adına kritiktir. Bu yazıda hem Linux (özellikle Ubuntu) hem de Windows sunuculara yönelik yaygın bağlantı yöntemlerini, artı ve eksileriyle birlikte ele alıyoruz.</p>
+<h2>🧭 Temel Bağlantı Protokolleri</h2>
+<ul>
+<li><strong>SSH (Secure Shell):</strong> Linux sistemlerde standart uzaktan bağlantı protokolüdür. Şifreli iletişim, anahtar doğrulama, port yönlendirme gibi özellikleri destekler.</li>
+<li><strong>RDP (Remote Desktop Protocol):</strong> Windows sunuculara grafiksel erişim sağlar. Kullanımı kolaydır ancak doğru yapılandırılmazsa güvenlik açığı doğurabilir.</li>
+<li><strong>PAM (Privileged Access Management):</strong> Linux’ta kimlik doğrulama mekanizmasını modüler hale getirir. SSH dahil birçok servis için merkezi güvenlik politikaları uygulanabilir.</li>
+<li><strong>VPN (Virtual Private Network):</strong> Uzak kullanıcıların özel bir ağdaymış gibi güvenli bağlantı kurmasını sağlar.</li>
+<li><strong>MFA/2FA:</strong> İki adımlı doğrulama ile bağlantı güvenliğini katlar. SSH ve RDP ile entegre edilebilir.</li>
+</ul>
 <h2>🛡️ PAM (Privileged Access Management) Nedir?</h2>
 <p><strong>PAM</strong>, “Privileged Access Management” yani Ayrıcalıklı Erişim Yönetimi anlamına gelir. Sistem yöneticileri, kritik kaynaklara erişen kullanıcıların kimliklerini, oturumlarını ve ayrıcalıklarını merkezi olarak yönetmek zorundadır. PAM çözümleri bu süreci denetleyerek hem güvenliği artırır hem de yasal denetimlere uyumu kolaylaştırır.</p>
 <ul>
-  <li>Kritik sistemlere erişimi olan hesapları (root, domain admin vb.) izler ve sınırlandırır.</li>
-  <li>Parola kasaları, oturum kaydı, denetimli komut çalıştırma gibi özellikler sağlar.</li>
-  <li>Kullanıcıların erişimlerini geçici, rol tabanlı ya da onaylı şekilde kontrol altına alır.</li>
-  <li><strong>CyberArk, BeyondTrust, Thycotic</strong> gibi araçlar yaygın PAM çözümlerindendir.</li>
+<li>Kritik sistemlere erişimi olan hesapları (root, domain admin vb.) izler ve sınırlandırır.</li>
+<li>Parola kasaları, oturum kaydı, denetimli komut çalıştırma gibi özellikler sağlar.</li>
+<li>Kullanıcıların erişimlerini geçici, rol tabanlı ya da onaylı şekilde kontrol altına alır.</li>
+<li><strong>CyberArk, BeyondTrust, Thycotic</strong> gibi araçlar yaygın PAM çözümlerindendir.</li>
 </ul>
 <p>PAM sistemleri özellikle finans, sağlık ve kamu gibi sektörlerde siber güvenliğin temel yapı taşlarından biridir.</p>
-
-    <p><strong>PAM</strong>, Linux sistemlerde kimlik doğrulama mekanizmasını esnek ve modüler bir hale getiren bir sistemdir. Temel amacı, uygulamaların kimlik doğrulama süreçlerini merkezi ve özelleştirilebilir şekilde yönetmektir.</p>
-    <ul>
-      <li>PAM ile SSH, sudo, su, login gibi servislerde ortak güvenlik kuralları tanımlanabilir.</li>
-      <li>LDAP, Kerberos, OTP (tek kullanımlık şifre) ve biyometrik doğrulama sistemleri ile entegre çalışabilir.</li>
-      <li><code>/etc/pam.d/</code> klasörü altında her servis için ayrı ayar dosyaları bulunur.</li>
-      <li>Örneğin: <code>/etc/pam.d/sshd</code> dosyası, SSH oturumlarında hangi doğrulama adımlarının çalışacağını belirler.</li>
-    </ul>
-    <p>PAM yapılandırması dikkatle yapılmalıdır çünkü yanlış bir ayar, sisteme erişimi tamamen engelleyebilir.</p>
-    <h2>📊 Karşılaştırma Tablosu</h2>
-      <table style="width:100%; border-collapse: collapse; margin-bottom: 2rem;">
-        <thead>
-          <tr>
-            <th style="border: 1px solid #ccc; padding: 0.5rem;">Yöntem</th>
-            <th style="border: 1px solid #ccc; padding: 0.5rem;">Platform</th>
-            <th style="border: 1px solid #ccc; padding: 0.5rem;">Avantajlar</th>
-            <th style="border: 1px solid #ccc; padding: 0.5rem;">Dezavantajlar</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td style="border: 1px solid #ccc; padding: 0.5rem;">SSH</td>
-            <td style="border: 1px solid #ccc; padding: 0.5rem;">Linux</td>
-            <td style="border: 1px solid #ccc; padding: 0.5rem;">Şifreleme, anahtar desteği, terminal tabanlı</td>
-            <td style="border: 1px solid #ccc; padding: 0.5rem;">Grafik arayüz yok</td>
-          </tr>
-          <tr>
-            <td style="border: 1px solid #ccc; padding: 0.5rem;">RDP</td>
-            <td style="border: 1px solid #ccc; padding: 0.5rem;">Windows</td>
-            <td style="border: 1px solid #ccc; padding: 0.5rem;">GUI desteği, kolay kullanım</td>
-            <td style="border: 1px solid #ccc; padding: 0.5rem;">Güvenlik açıklarına hassas</td>
-          </tr>
-          <tr>
-            <td style="border: 1px solid #ccc; padding: 0.5rem;">PAM</td>
-            <td style="border: 1px solid #ccc; padding: 0.5rem;">Linux</td>
-            <td style="border: 1px solid #ccc; padding: 0.5rem;">Merkezi kimlik kontrolü, modüler yapı</td>
-            <td style="border: 1px solid #ccc; padding: 0.5rem;">Yapılandırması karmaşık</td>
-          </tr>
-          <tr>
-            <td style="border: 1px solid #ccc; padding: 0.5rem;">VPN</td>
-            <td style="border: 1px solid #ccc; padding: 0.5rem;">Her iki platform</td>
-            <td style="border: 1px solid #ccc; padding: 0.5rem;">Şifreli tünel, dahili erişim sağlar</td>
-            <td style="border: 1px solid #ccc; padding: 0.5rem;">Yapılandırma ve lisans maliyeti</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h2>🔒 Güvenlik Önerileri</h2>
-      <ul>
-        <li>SSH için <code>key-based</code> doğrulama kullanın, root ile bağlanmayı kapatın.</li>
-        <li>RDP portu varsayılan 3389 yerine değiştirilmelidir.</li>
-        <li>Her erişim yöntemi için MFA (çok faktörlü kimlik doğrulama) zorunlu hale getirilmelidir.</li>
-        <li>VPN kullanılıyorsa split tunneling kapatılmalıdır.</li>
-        <li>Bağlantılar düzenli olarak loglanmalı ve analiz edilmelidir.</li>
-      </ul>
-
-      <h2>🧠 Sonuç</h2>
-      <p>Bağlantı yönteminiz ne olursa olsun, güvenlik bir tercih değil zorunluluktur. SSH, RDP ve diğer protokolleri bilinçli kullanmak, BT altyapınızın sağlamlığını doğrudan etkiler.</p>
-    </main>
-  </div>
-
-  <div id="footer"></div>
-
-  <script>
+<p><strong>PAM</strong>, Linux sistemlerde kimlik doğrulama mekanizmasını esnek ve modüler bir hale getiren bir sistemdir. Temel amacı, uygulamaların kimlik doğrulama süreçlerini merkezi ve özelleştirilebilir şekilde yönetmektir.</p>
+<ul>
+<li>PAM ile SSH, sudo, su, login gibi servislerde ortak güvenlik kuralları tanımlanabilir.</li>
+<li>LDAP, Kerberos, OTP (tek kullanımlık şifre) ve biyometrik doğrulama sistemleri ile entegre çalışabilir.</li>
+<li><code>/etc/pam.d/</code> klasörü altında her servis için ayrı ayar dosyaları bulunur.</li>
+<li>Örneğin: <code>/etc/pam.d/sshd</code> dosyası, SSH oturumlarında hangi doğrulama adımlarının çalışacağını belirler.</li>
+</ul>
+<p>PAM yapılandırması dikkatle yapılmalıdır çünkü yanlış bir ayar, sisteme erişimi tamamen engelleyebilir.</p>
+<h2>📊 Karşılaştırma Tablosu</h2>
+<table style="width:100%; border-collapse: collapse; margin-bottom: 2rem;">
+<thead>
+<tr>
+<th style="border: 1px solid #ccc; padding: 0.5rem;">Yöntem</th>
+<th style="border: 1px solid #ccc; padding: 0.5rem;">Platform</th>
+<th style="border: 1px solid #ccc; padding: 0.5rem;">Avantajlar</th>
+<th style="border: 1px solid #ccc; padding: 0.5rem;">Dezavantajlar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="border: 1px solid #ccc; padding: 0.5rem;">SSH</td>
+<td style="border: 1px solid #ccc; padding: 0.5rem;">Linux</td>
+<td style="border: 1px solid #ccc; padding: 0.5rem;">Şifreleme, anahtar desteği, terminal tabanlı</td>
+<td style="border: 1px solid #ccc; padding: 0.5rem;">Grafik arayüz yok</td>
+</tr>
+<tr>
+<td style="border: 1px solid #ccc; padding: 0.5rem;">RDP</td>
+<td style="border: 1px solid #ccc; padding: 0.5rem;">Windows</td>
+<td style="border: 1px solid #ccc; padding: 0.5rem;">GUI desteği, kolay kullanım</td>
+<td style="border: 1px solid #ccc; padding: 0.5rem;">Güvenlik açıklarına hassas</td>
+</tr>
+<tr>
+<td style="border: 1px solid #ccc; padding: 0.5rem;">PAM</td>
+<td style="border: 1px solid #ccc; padding: 0.5rem;">Linux</td>
+<td style="border: 1px solid #ccc; padding: 0.5rem;">Merkezi kimlik kontrolü, modüler yapı</td>
+<td style="border: 1px solid #ccc; padding: 0.5rem;">Yapılandırması karmaşık</td>
+</tr>
+<tr>
+<td style="border: 1px solid #ccc; padding: 0.5rem;">VPN</td>
+<td style="border: 1px solid #ccc; padding: 0.5rem;">Her iki platform</td>
+<td style="border: 1px solid #ccc; padding: 0.5rem;">Şifreli tünel, dahili erişim sağlar</td>
+<td style="border: 1px solid #ccc; padding: 0.5rem;">Yapılandırma ve lisans maliyeti</td>
+</tr>
+</tbody>
+</table>
+<h2>🔒 Güvenlik Önerileri</h2>
+<ul>
+<li>SSH için <code>key-based</code> doğrulama kullanın, root ile bağlanmayı kapatın.</li>
+<li>RDP portu varsayılan 3389 yerine değiştirilmelidir.</li>
+<li>Her erişim yöntemi için MFA (çok faktörlü kimlik doğrulama) zorunlu hale getirilmelidir.</li>
+<li>VPN kullanılıyorsa split tunneling kapatılmalıdır.</li>
+<li>Bağlantılar düzenli olarak loglanmalı ve analiz edilmelidir.</li>
+</ul>
+<h2>🧠 Sonuç</h2>
+<p>Bağlantı yönteminiz ne olursa olsun, güvenlik bir tercih değil zorunluluktur. SSH, RDP ve diğer protokolleri bilinçli kullanmak, BT altyapınızın sağlamlığını doğrudan etkiler.</p>
+</main>
+</div>
+<div id="footer"></div>
+<script>
     fetch("header.html")
       .then(r => r.text())
       .then(d => {
