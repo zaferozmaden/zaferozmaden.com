@@ -1,4 +1,16 @@
-
-<footer style="text-align: center; padding: 2rem; color: #e2e8f0; background-color: #1e293b;">
-  <p>&copy; 2025 Zafer Özmaden | Tüm hakları saklıdır.</p>
+<footer style="padding: 2rem; color: #e2e8f0; background-color: #1e293b; overflow: hidden;">
+  <div style="white-space: nowrap; display: inline-block; animation: slide-left 15s linear infinite;">
+    &copy; 2025 Zafer Özmaden | Tüm hakları saklıdır.
+  </div>
 </footer>
+
+<style>
+@keyframes slide-left {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+</style>
